@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <h2>Pay with Razorpay</h2>
+    <button id="payBtn">Pay Now</button>
+
+    <script>
+        document.getElementById('payBtn').onclick = async function() {
+            // Define the payment amount
+            const amount = 500; // Amount in INR
+
+            // Create an order by calling the backend
+            const order = await fetch('http://localhost:3000/create-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ amount: amount })
+            }).then(res => res.json());
+
+            // Configure the Razorpay payment options
+            const options = {
+                "key": "YOUR_RAZORPAY_KEY_ID", // Enter the Razorpay Key ID
+                "amount": order.amount,
+                "currency": order.currency,
+                "name": "Your Company Name",
+                "description": "Test Transaction",
+                "order_id": order.id, // Order ID returned from Razorpay
+                "handler": function (response) {
+                    alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
+                    
+                    // Optionally, verify payment on the backend
+                    fetch('http://localhost:3000/verify-payment', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            order_id: order.id,
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_signature: response.razorpay_signature
+                        })
+                    }).then(res => res.json())
+                      .then(data => {
+                          if (data.status === 'success') {
+                              alert('Payment verified successfully!');
+                          } else {
+                              alert('Payment verification failed.');
+                          }
+                      });
+                },
+                "prefill": {
+                    "name": "Customer Name",
+                    "email": "customer@example.com",
+                    "contact": "9999999999"
+                },
+                "theme": {
+                    "color": "#3399cc"
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        };
+    </script>
+</body>
+</html>

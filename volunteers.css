@@ -1,0 +1,134 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background: url('https://t3.ftcdn.net/jpg/04/07/82/16/360_F_407821606_mbGj8l8i5q6hksTtVDISVUAexViSIJKu.jpg') no-repeat center center fixed; /* Replace with your image path */
+    background-size: cover;
+    color: #333;
+}
+
+header {
+    background-color: rgba(0, 123, 255, 0.8); /* Semi-transparent background to ensure readability */
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+section {
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h2 {
+    color: #007BFF;
+    margin-top: 20px;
+}
+
+h3 {
+    color: #0056b3;
+    margin-top: 15px;
+}
+
+p, ul {
+    margin: 15px 0;
+    line-height: 1.8;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0, 123, 255, 0.8); /* Semi-transparent background to ensure readability */
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Volunteer Types Section */
+.volunteer-types {
+    margin-bottom: 30px;
+    padding: 15px;
+    border-left: 5px solid #007BFF;
+    background-color: #e9f2ff;
+    border-radius: 4px;
+}
+
+.volunteer-types h2 {
+    margin-top: 0;
+}
+
+.volunteer-types a {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #007BFF;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.volunteer-types a:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    section {
+        padding: 15px;
+        margin: 10px;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+
+    h3 {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.2em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    h3 {
+        font-size: 1em;
+    }
+}
